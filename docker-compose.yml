@@ -1,0 +1,39 @@
+services:
+  mongo:
+    image: mongo:6
+    container_name: bookapp-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    restart: unless-stopped
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: bookapp-server
+    ports:
+      - "5001:5000"
+    env_file:
+      - ./server/.env
+    environment:
+      - PORT=5000
+      - MONGO_URI=mongodb://mongo:27017/bookapp
+    depends_on:
+      - mongo
+    restart: unless-stopped
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: bookapp-client
+    ports:
+      - "3000:80"
+    depends_on:
+      - server
+    restart: unless-stopped
+
+volumes:
+  mongo_data:
