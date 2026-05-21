@@ -2,18 +2,13 @@
 
 Aplikasi pencarian buku berbasis web yang memungkinkan pengguna mencari jutaan buku dari Google Books API dan menyimpan buku favorit ke dalam wishlist pribadi.
 
-Proyek ini dibuat sebagai bagian dari engineer test **Travelio**, dibangun dengan stack modern: **Express.js + MongoDB** untuk backend dan **React + Tailwind CSS** untuk frontend, seluruhnya dapat dijalankan via **Docker**.
+Proyek ini dibuat sebagai bagian dari engineer test **Travelio**, dibangun dengan stack: **Express.js + MongoDB** untuk backend dan **React + Tailwind CSS** untuk frontend, seluruhnya dapat dijalankan via **Docker**.
 
 ---
 
 ## Tampilan
-
-| Halaman Utama | Hasil Pencarian | Wishlist |
-|---|---|---|
-| Hero search bar dengan gradient | Grid buku dengan infinite scroll | Koleksi buku tersimpan |
-
----
-
+![alt text](<Screenshot 2026-05-21 at 15.43.04.png>)
+![alt text](<Screenshot 2026-05-21 at 15.42.51.png>)
 ## Fitur
 
 - **Pencarian Buku** — cari dari jutaan buku via Google Books API, dipicu oleh Enter atau klik tombol Cari
@@ -287,11 +282,3 @@ book-search-app/
 1. Klik **Wishlist** di navbar kanan atas
 2. Semua buku tersimpan ditampilkan dalam grid
 3. Klik tombol **Tersimpan** untuk menghapus buku dari wishlist
-
----
-
-## Catatan
-
-- `totalItems` dari Google Books API adalah estimasi kasar, bukan hitungan pasti — angka tersebut mencerminkan banyaknya dokumen di index Google yang mengandung kata kunci, bukan judul yang persis cocok.
-- Tanpa API key, Google Books API memiliki rate limit yang lebih ketat (~100 request/hari per IP).
-- Data wishlist tersimpan di MongoDB volume Docker — data tidak hilang saat container di-restart, namun akan hilang jika volume dihapus (`docker compose down -v`).
